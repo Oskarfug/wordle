@@ -12,9 +12,15 @@ public class Main {
         try (Scanner scanner = new Scanner(System.in)) {
             Wordle wordle = new Wordle(WORDS_FILE_PATH);
 
+            System.out.println("Welcome to Wordle!");
+            System.out.println("You have 5 guesses to find the secret word.");
+            System.out.println("You will receive feedback after each guess.");
+            System.out.println(TextBackground.GREEN.getEscapeCode() + "GREEN" + TextBackground.RESET.getEscapeCode() + " - The letter is in the correct position.");
+            System.out.println(TextBackground.YELLOW.getEscapeCode() + "YELLOW" + TextBackground.RESET.getEscapeCode() + " - The letter is in the word, but the wrong position.");
+            System.out.println(TextBackground.GRAY.getEscapeCode() + "GRAY" + TextBackground.RESET.getEscapeCode() + " - The letter is not in the word.");
+
             while (!wordle.isGameOver()) {
-                System.out.println("Guesses reamining: " + wordle.getGuessesRemaining());
-                System.out.println("Enter your 5-letter guess: ");
+                System.out.printf("Guesses remaining " + wordle.getGuessesRemaining() + ". Enter you guess: ");
                 String guess = scanner.nextLine();
 
                 List<GuessEvaluator.GuessResult> results = wordle.submitGuess(guess);

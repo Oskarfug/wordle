@@ -22,6 +22,7 @@ public class Wordle {
         String formattedGuess = guess.toUpperCase();
 
         if (formattedGuess.length() != 5) {
+            System.out.println("Invalid guess. Please enter a 5 letter word.");
             return null;
         }
 
