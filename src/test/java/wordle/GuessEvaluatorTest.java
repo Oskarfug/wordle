@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GuessEvaluatorTest {
     @Test
-    void canHandleDuplicateLetters() throws IOException {
+    void canHandleDuplicateLetters() {
         // Arrange
         String guess = "ATARI";
         String secretWord = "WATER";
@@ -27,7 +27,7 @@ public class GuessEvaluatorTest {
     }
 
     @Test
-    void canHandleCorrectGuess() throws IOException {
+    void canHandleCorrectGuess() {
         // Arrange
         String guess = "HELLO";
         String secretWord = "HELLO";

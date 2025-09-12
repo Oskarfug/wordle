@@ -2,7 +2,6 @@ package wordle;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Random;
 
 public class Wordle {
 
