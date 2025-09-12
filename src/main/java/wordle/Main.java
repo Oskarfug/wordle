@@ -12,19 +12,16 @@ public class Main {
         try (Scanner scanner = new Scanner(System.in)) {
             Wordle wordle = new Wordle(WORDS_FILE_PATH);
 
-            while (!wordle.isGameLost()) {
+            while (!wordle.isGameOver()) {
                 System.out.println("Guesses reamining: " + wordle.getGuessesRemaining());
                 System.out.println("Enter your 5-letter guess: ");
                 String guess = scanner.nextLine();
 
-                if (guess.length() != 5) {
-                    System.out.println("Invalid guess. Guess must be 5 letters long.");
-                    continue;
+                List<GuessEvaluator.GuessResult> results = wordle.submitGuess(guess);
+
+                if (results != null) {
+                    printGuessResults(results);
                 }
-
-                List<Wordle.GuessResult> results = wordle.submitGuess(guess);
-
-                printGuessResults(results);
             }
 
             if (wordle.isGameWon()) {
@@ -35,8 +32,8 @@ public class Main {
         }
     }
 
-    private static void printGuessResults(List<Wordle.GuessResult> results) {
-        for (Wordle.GuessResult result : results) {
+    private static void printGuessResults(List<GuessEvaluator.GuessResult> results) {
+        for (GuessEvaluator.GuessResult result : results) {
             String colorCode = switch (result.status) {
                 case CORRECT -> TextBackground.GREEN.getEscapeCode();
                 case MISPLACED -> TextBackground.YELLOW.getEscapeCode();
